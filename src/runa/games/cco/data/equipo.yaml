@@ -1,0 +1,226 @@
+# Catalogo de equipo (pagina 18 del reglamento).
+# Los modificadores viven aqui, no en el motor.
+
+arma_mano:
+  nombre: Arma de mano
+  tipo: arma
+  categoria: mano
+  precio: 6
+  manos: 1
+  variantes: [aplastante, cortante]
+  notas: Espada, hacha, martillo o maza.
+
+arma_mano_ligera:
+  nombre: Arma de mano ligera
+  tipo: arma
+  categoria: ligera
+  precio: 5
+  manos: 1
+  variantes: [aplastante, cortante]
+  reglas:
+    - {en: ataque, suma: -1, texto: arma ligera}
+  notas: Daga, porra, espadin. Necesaria para descuartizar a un troll.
+
+arma_dos_manos:
+  nombre: Arma a dos manos
+  tipo: arma
+  categoria: dos_manos
+  precio: 15
+  manos: 2
+  variantes: [aplastante, cortante]
+  reglas:
+    # No suma en manos torpes: para un mago o un picaro cuenta como ligera.
+    - {en: ataque, suma: 1, si_no: [torpe_con_armas], texto: arma a dos manos}
+  notas: Impide llevar escudo o linterna.
+
+arco:
+  nombre: Arco
+  tipo: arma
+  categoria: arco
+  precio: 15
+  manos: 2
+  etiquetas: [a_distancia, cortante, flecha]
+  notas: >-
+    Permite un ataque antes que los monstruos aunque estos actuen primero.
+    Despues hay que gastar un turno para envainarlo y sacar otra arma.
+
+honda:
+  nombre: Honda
+  tipo: arma
+  categoria: honda
+  precio: 4
+  manos: 1
+  etiquetas: [a_distancia, aplastante]
+  reglas:
+    - {en: ataque, suma: -1, texto: honda}
+
+armadura_ligera:
+  nombre: Armadura ligera
+  tipo: armadura
+  categoria: ligera
+  precio: 10
+  reglas:
+    - {en: defensa, suma: 1, si_no: [ignora_armadura], texto: armadura ligera}
+  notas: Reasignable a otro personaje de la misma especie.
+
+armadura_pesada:
+  nombre: Armadura pesada
+  tipo: armadura
+  categoria: pesada
+  precio: 30
+  reglas:
+    - en: defensa
+      suma: 2
+      si_no: [ignora_armadura, ignora_armadura_pesada]
+      texto: armadura pesada
+  notas: Hecha a medida, no se reasigna. Puede penalizar tiradas de salvacion.
+
+escudo:
+  nombre: Escudo
+  tipo: escudo
+  precio: 5
+  manos: 1
+  etiquetas: [escudo]
+  reglas:
+    # No protege al huir ni contra monstruos errantes que sorprenden al grupo.
+    - en: defensa
+      suma: 1
+      si_no: [ignora_escudo, sorpresa, huida]
+      texto: escudo
+
+linterna:
+  nombre: Linterna
+  tipo: luz
+  precio: 4
+  manos: 1
+  notas: El grupo necesita al menos una. Su portador no puede usar arco, escudo ni arma a dos manos.
+
+cuerda:
+  nombre: Cuerda
+  tipo: util
+  precio: 4
+  notas: Necesaria para atar a un monstruo sometido.
+
+ganzuas:
+  nombre: Ganzuas
+  tipo: util
+  precio: 0
+
+provisiones:
+  nombre: Provisiones
+  tipo: util
+  precio: 0
+
+libro_hechizos:
+  nombre: Libro de hechizos y utensilios de escritura
+  tipo: util
+  precio: 0
+
+vendaje:
+  nombre: Vendaje
+  tipo: consumible
+  precio: 5
+  notas: Una vez por aventura y personaje, cura 1 Vida. No durante el combate.
+
+agua_bendita:
+  nombre: Vial de agua bendita
+  tipo: consumible
+  precio: 30
+  notas: Inflige 1 herida automatica a vampiros y demonios. Maximo un vial por personaje.
+
+pocion_curacion:
+  nombre: Pocion de curacion
+  tipo: consumible
+  precio: 100
+  usos: 1
+  etiquetas: [magico, pocion]
+  notas: Restaura toda la Vida. Una por aventura y personaje. Accion gratuita.
+
+hechizo_bendicion:
+  nombre: Hechizo de Bendicion (comprado a la iglesia)
+  tipo: servicio
+  precio: 100
+  notas: Elimina una condicion como maldito o petrificado.
+
+ritual_resurreccion:
+  nombre: Ritual de Resurreccion
+  tipo: servicio
+  precio: 1000
+
+# --- Tesoros magicos (pagina 41). Se venden, pero no se compran. ----------- #
+
+varita_sueno:
+  nombre: Varita de Sueno
+  tipo: magico
+  etiquetas: [magico, varita]
+  precio: 100
+  usos: 3
+  concede: dormir
+  usable_por: [mago, elfo]
+  notas: El usuario suma su nivel, como si lanzara el hechizo. Se vende por 100 por hechizo.
+
+anillo_teletransportacion:
+  nombre: Anillo de Teletransportacion
+  tipo: magico
+  etiquetas: [magico, anillo]
+  precio: 50
+  usos: 1
+  notas: >-
+    Supera automaticamente una tirada de Defensa sacando al portador de la sala;
+    vuelve al acabar el combate. Despues queda como anillo de oro de d6+1 piezas.
+
+oro_de_los_necios:
+  nombre: Oro de los Necios
+  tipo: magico
+  etiquetas: [magico, oro_falso]
+  precio: 50
+  usos: 1
+  notas: >-
+    Soborna automaticamente al siguiente monstruo que pida soborno, sea cual sea
+    la cantidad. La Plaga del Hierro no se deja enganar.
+
+arma_magica:
+  nombre: Arma Magica
+  tipo: arma
+  categoria: mano
+  etiquetas: [magico]
+  precio: 0
+  manos: 1
+  variantes: [aplastante, cortante]
+  reglas:
+    - {en: ataque, suma: 1, texto: arma magica}
+  notas: >-
+    Permanente. Su tipo concreto (ligera, de mano o arco) sale de la tabla
+    tipo_arma_magica y sustituye a esta categoria.
+
+baston_bola_fuego:
+  nombre: Baston de Bola de Fuego
+  tipo: magico
+  etiquetas: [magico, baston]
+  precio: 200
+  usos: 2
+  concede: bola_de_fuego
+  usable_por: [mago]
+  notas: El usuario suma su nivel. Se vende por 100 piezas por hechizo.
+
+pergamino:
+  nombre: Pergamino
+  tipo: magico
+  etiquetas: [magico, pergamino]
+  precio: 100
+  usos: 1
+  notas: Contiene un hechizo aleatorio, lanzable una vez por cualquiera que sepa leerlo.
+
+gema:
+  nombre: Gema
+  tipo: tesoro
+  valor: 2d6x5
+  etiquetas: [gema]
+  notas: Los enanos la venden un 20% mas cara.
+
+joyeria:
+  nombre: Articulo de joyeria
+  tipo: tesoro
+  valor: 3d6x10
+  etiquetas: [gema]
+  notas: Los enanos la venden un 20% mas cara.

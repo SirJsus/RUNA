@@ -1,0 +1,219 @@
+# Tablas de generacion de mazmorra. Transcritas del apendice de consulta rapida.
+
+contenido_habitacion:
+  nombre: Contenido de la Habitacion
+  dado: 2d6
+  entradas:
+    - rango: 2
+      texto: Tesoro encontrado.
+      tirar: [tesoros]
+    - rango: 3
+      texto: Tesoro protegido por una trampa.
+      tirar: [trampas, tesoros]
+    - rango: 4
+      texto: Evento especial.
+      si_corredor: vacio
+      tirar: [eventos_especiales]
+    - rango: 5
+      texto: Vacio, pero con una caracteristica especial.
+      tirar: [caracteristicas_especiales]
+    - rango: 6
+      texto: Bichos y alimanas.
+      tirar: [bichos]
+    - rango: 7
+      texto: Esbirros o secuaces.
+      tirar: [esbirros]
+    - rango: 8
+      texto: Esbirros.
+      si_corredor: vacio
+      tirar: [esbirros]
+    - rango: 9
+      texto: Vacio.
+    - rango: 10
+      texto: Monstruo extrano.
+      si_corredor: vacio
+      tirar: [monstruos_extranos]
+    - rango: 11
+      texto: >-
+        Un jefe. Despues tira d6 sumando +1 por cada jefe o monstruo extrano ya
+        encontrado: con 6+ (o si la mazmorra esta completa) es el jefe final.
+      prueba_jefe_final: true
+      tirar: [jefes]
+    - rango: 12
+      texto: Guarida de un dragon pequeno. Cuenta como jefe y puede ser el jefe final.
+      si_corredor: vacio
+      jefe_fijo: dragon_pequeno
+      prueba_jefe_final: true
+
+sala_entrada:
+  nombre: Sala de Entrada
+  dado: d6
+  entradas:
+    - rango: 1-6
+      texto: Plano de entrada numero {valor}.
+
+trampas:
+  nombre: Trampas
+  dado: d6
+  entradas:
+    - rango: 1
+      texto: Un dardo (nivel 2) ataca a un personaje al azar.
+      nivel: 2
+      objetivo: aleatorio
+    - rango: 2
+      texto: Gas venenoso (nivel 3) ataca a todos los personajes.
+      nivel: 3
+      objetivo: todos
+    - rango: 3
+      texto: Una trampilla de foso (nivel 4) se abre bajo el primero de la marcha.
+      nivel: 4
+      objetivo: primero
+    - rango: 4
+      texto: Trampa para osos (nivel 4), hiere al primero del orden de marcha.
+      nivel: 4
+      objetivo: primero
+    - rango: 5
+      texto: Lanzas disparadas desde la pared (nivel 5) atacan a dos personajes al azar.
+      nivel: 5
+      objetivo: aleatorio
+      objetivos: 2
+    - rango: 6
+      texto: Un bloque de piedra gigante (nivel 5) cae sobre el ultimo de la marcha.
+      nivel: 5
+      objetivo: ultimo
+
+tesoros:
+  nombre: Tesoros
+  dado: d6
+  entradas:
+    - rango: -20-0
+      texto: No se encontro ningun tesoro.
+    - rango: 1
+      texto: d6 piezas de oro.
+      oro: d6
+    - rango: 2
+      texto: 2d6 piezas de oro.
+      oro: 2d6
+    - rango: 3
+      texto: Un pergamino con un hechizo aleatorio.
+      tirar: [hechizos]
+      objeto: pergamino
+    - rango: 4
+      texto: Una gema.
+      objeto: gema
+      valor: 2d6x5
+    - rango: 5
+      texto: Un articulo de joyeria.
+      objeto: joyeria
+      valor: 3d6x10
+    - rango: 6
+      texto: Un objeto magico aleatorio.
+      tirar: [tesoros_magicos]
+
+caracteristicas_especiales:
+  nombre: Caracteristicas Especiales
+  dado: d6
+  entradas:
+    - rango: 1
+      texto: >-
+        Fuente: todos los personajes heridos recuperan 1 punto de Vida la primera
+        vez que encuentran una fuente en la aventura. Las siguientes no hacen nada.
+      id: fuente
+      unica_por_aventura: true
+    - rango: 2
+      texto: >-
+        Templo Bendito: un personaje a tu eleccion gana +1 al Ataque contra no
+        muertos y demonios, hasta que mate a uno.
+      id: templo_bendito
+    - rango: 3
+      texto: >-
+        Armeria: todos los personajes pueden cambiar sus armas dentro de los
+        limites de su clase.
+      id: armeria
+    - rango: 4
+      texto: >-
+        Altar Maldito: un personaje aleatorio queda maldito con -1 a la Defensa.
+        Se rompe matando a un jefe en solitario, entrando en un Templo Bendito o
+        recibiendo una Bendicion.
+      id: altar_maldito
+    - rango: 5
+      texto: >-
+        Estatua: puedes ignorarla o tocarla. Si la tocas, tira d6: con 1-3
+        despierta y ataca (jefe de nivel 4, 6 puntos de Vida, inmune a hechizos;
+        al derrotarla, 3d6x10 de oro); con 4-6 se rompe y hay 3d6x10 de oro.
+      id: estatua
+    - rango: 6
+      texto: >-
+        Sala con Puzzle: una caja de rompecabezas de nivel d6. Cada intento
+        fallido cuesta 1 Vida. Magos y picaros suman su nivel. Si se resuelve,
+        tira en la tabla de tesoros.
+      id: puzzle
+
+eventos_especiales:
+  nombre: Eventos Especiales
+  dado: d6
+  entradas:
+    - rango: 1
+      texto: >-
+        Un fantasma atraviesa al grupo. Todos defienden contra Miedo de nivel 4 o
+        pierden 1 Vida. El clerigo suma su nivel.
+      id: fantasma
+    - rango: 2
+      texto: Monstruos errantes atacan al grupo.
+      id: monstruos_errantes
+      tirar: [monstruo_errante_evento]
+    - rango: 3
+      texto: >-
+        La Dama Blanca pide al grupo que complete una mision. Si aceptas, tira en
+        la tabla de misiones. Si rehusas, desaparece para el resto del juego.
+      id: dama_blanca
+      unica_por_aventura: true
+    - rango: 4
+      texto: Trampa.
+      id: trampa
+      tirar: [trampas]
+    - rango: 5
+      texto: >-
+        Un curandero errante sana al grupo a 10 piezas de oro por punto de Vida.
+        Solo aparece una vez por juego; si vuelve a salir, repite la tirada.
+      id: curandero
+      unica_por_aventura: true
+    - rango: 6
+      texto: >-
+        Un alquimista errante vende una Pocion de Curacion por miembro del grupo
+        (50 oro cada una) o una dosis de Veneno para armas afiladas (30 oro).
+        Solo una vez por juego; si vuelve a salir, cuenta como trampa.
+      id: alquimista
+      unica_por_aventura: true
+
+# OJO: el reglamento da esta tabla DOS VECES con valores distintos.
+#
+#   * Seccion "Monstruos Errantes" (pagina 68):  1-2 bichos, 3-4 esbirros, 5, 6
+#   * Tabla de Eventos Especiales, entrada 2:    1-3 bichos, 4 esbirros,   5, 6
+#
+# Se conservan las dos en vez de elegir una: `monstruo_errante` es la regla
+# general y `monstruo_errante_evento` la que usa esa entrada concreta.
+
+monstruo_errante:
+  nombre: Origen del Monstruo Errante
+  dado: d6
+  entradas:
+    - {rango: 1-2, texto: Bichos y alimanas., tirar: [bichos]}
+    - {rango: 3-4, texto: Secuaces y esbirros., tirar: [esbirros]}
+    - {rango: 5, texto: Monstruo extrano., tirar: [monstruos_extranos]}
+    - rango: 6
+      texto: Jefe (nunca puede ser el jefe final; repite si sale dragon pequeno).
+      nunca_jefe_final: true
+      tirar: [jefes]
+
+monstruo_errante_evento:
+  nombre: Origen del Monstruo Errante (variante de Eventos Especiales)
+  dado: d6
+  entradas:
+    - {rango: 1-3, texto: Bichos y alimanas., tirar: [bichos]}
+    - {rango: 4, texto: Secuaces y esbirros., tirar: [esbirros]}
+    - {rango: 5, texto: Monstruo extrano., tirar: [monstruos_extranos]}
+    - rango: 6
+      texto: Jefe (nunca puede ser el jefe final; repite si sale dragon pequeno).
+      nunca_jefe_final: true
+      tirar: [jefes]

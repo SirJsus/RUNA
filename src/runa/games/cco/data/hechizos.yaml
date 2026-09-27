@@ -1,0 +1,125 @@
+# Los seis hechizos del juego (pagina 58) mas los poderes de clase.
+# Lanzar un hechizo sustituye al ataque: no se puede hacer ambas cosas.
+
+bendicion:
+  nombre: Bendicion
+  tirada: ""                       # automatica
+  momentos: turno
+  objetivo: aliado
+  gasta: hechizos
+  usable_por: [mago, elfo, clerigo]
+  efecto: quitar_condicion
+  notas: >-
+    Elimina una maldicion u otra condicion, como estar petrificado por una
+    medusa. Unico hechizo que tambien lanzan los clerigos (gastando Bendicion).
+
+bola_de_fuego:
+  nombre: Bola de Fuego
+  tirada: hechizo
+  momentos: turno
+  objetivo: monstruo
+  gasta: hechizos
+  usable_por: [mago, elfo]
+  efecto: bola_de_fuego
+  notas: >-
+    Funciona como una tirada de Ataque. Contra esbirros mata a (tirada - nivel
+    de los esbirros) criaturas, con un minimo de una. No afecta a los dragones,
+    salvo a los dragones no muertos. Quema la telarana de la arana gigante.
+
+rayo:
+  nombre: Rayo
+  tirada: hechizo
+  momentos: turno
+  objetivo: monstruo
+  gasta: hechizos
+  usable_por: [mago, elfo]
+  efecto: rayo
+  notas: >-
+    Como una tirada de Ataque. Contra esbirros mata a uno solo; contra un jefe
+    inflige 2 puntos de Vida.
+
+dormir:
+  nombre: Dormir
+  tirada: hechizo
+  momentos: turno
+  objetivo: monstruo
+  gasta: hechizos
+  usable_por: [mago, elfo]
+  efecto: dormir
+  notas: >-
+    Como una tirada de Ataque. Derrota a un jefe entero o a d6 + nivel esbirros.
+    No afecta a muertos vivientes ni a dragones. Los dormidos cuentan como
+    muertos, y permiten someter a un jefe para una mision de captura.
+
+escapada:
+  nombre: Escapada
+  tirada: ""                       # funciona automaticamente
+  momentos: [turno, defensa]
+  objetivo: uno_mismo
+  gasta: hechizos
+  usable_por: [mago, elfo]
+  efecto: escapada
+  notas: >-
+    El lanzador reaparece en la primera sala del juego. Es el unico hechizo que
+    puede lanzarse en el turno de los monstruos, en lugar de una tirada de Defensa.
+
+proteger:
+  nombre: Proteger
+  tirada: ""
+  momentos: turno
+  objetivo: aliado
+  gasta: hechizos
+  usable_por: [mago, elfo]
+  efecto: proteger
+  notas: Da +1 a la Defensa de un solo personaje durante toda la batalla.
+
+# --- Poderes de clase ------------------------------------------------------ #
+
+curacion:
+  nombre: Curacion
+  tipo: poder
+  tirada: ""
+  momentos: turno
+  objetivo: aliado
+  gasta: curacion
+  usable_por: [clerigo]
+  efecto: curacion
+  notas: >-
+    Sana d6 + nivel del clerigo. Se puede usar en cualquier momento, incluso en
+    combate, pero el clerigo no puede atacar ese mismo turno. Vale sobre si mismo.
+    Un barbaro la acepta: es favor divino, no magia.
+
+ataque_de_ira:
+  nombre: Ataque de Ira
+  tipo: poder
+  tirada: ataque
+  momentos: turno
+  objetivo: monstruo
+  gasta: ira
+  usable_por: [barbaro]
+  efecto: ataque_de_ira
+  notas: Tira el dado de ataque tres veces y elige el mejor. Contra un jefe inflige 2 heridas.
+
+suerte:
+  nombre: Suerte
+  tipo: poder
+  tirada: ""
+  momentos: libre
+  objetivo: uno_mismo
+  gasta: suerte
+  usable_por: [halfling]
+  efecto: suerte
+  notas: >-
+    Repite una tirada de Ataque o Defensa fallida, o escapa de un combate sin
+    recibir ataque. La repeticion es definitiva aunque salga peor.
+
+vendaje:
+  nombre: Vendaje
+  tipo: objeto
+  tirada: ""
+  momentos: fuera_de_combate
+  objetivo: uno_mismo
+  efecto: vendar
+  notas: >-
+    Una vez por aventura y personaje, cura 1 Vida. Acumulable con la curacion
+    magica. No se puede usar durante el combate.

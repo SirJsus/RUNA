@@ -1,0 +1,54 @@
+# Tablas de aparicion. Solo dicen QUE sale; el perfil esta en monstruos.yaml.
+
+bichos:
+  nombre: Bichos y Alimanas
+  dado: d6
+  entradas:
+    - {rango: 1, texto: 3d6 ratas., monstruo: ratas}
+    - {rango: 2, texto: 3d6 murcielagos vampiro., monstruo: murcielagos_vampiro}
+    - {rango: 3, texto: 2d6 goblins., monstruo: goblins_grupo}
+    - {rango: 4, texto: d6 ciempies gigantes., monstruo: ciempies_gigantes}
+    - {rango: 5, texto: d6 ranas vampiro., monstruo: ranas_vampiro}
+    - {rango: 6, texto: 2d6 ratas esqueleticas., monstruo: ratas_esqueleticas}
+  notas: Los bichos son una subclase de esbirros y no dan tirada de experiencia.
+
+esbirros:
+  nombre: Secuaces y Esbirros
+  dado: d6
+  entradas:
+    - rango: 1
+      texto: d6+2 esqueletos o d6 zombies (50% de probabilidad).
+      monstruo: [esqueletos, zombies]
+      eleccion: azar
+    - {rango: 2, texto: d6+3 goblins., monstruo: goblins}
+    - {rango: 3, texto: d6 hobgoblins., monstruo: hobgoblins}
+    - {rango: 4, texto: d6+1 orcos., monstruo: orcos}
+    - {rango: 5, texto: d3 trolls., monstruo: trolls}
+    - {rango: 6, texto: 2d6 funjis., monstruo: funjis}
+  notas: >-
+    Sobrevivir a 10 encuentros contra esbirros da una tirada de experiencia a -1.
+
+jefes:
+  nombre: Jefes
+  dado: d6
+  entradas:
+    - {rango: 1, texto: Momia., monstruo: momia}
+    - {rango: 2, texto: Orco brutal., monstruo: orco_brutal}
+    - {rango: 3, texto: Ogro., monstruo: ogro}
+    - {rango: 4, texto: Medusa., monstruo: medusa}
+    - {rango: 5, texto: Senor del Caos., monstruo: senor_del_caos}
+    - {rango: 6, texto: Dragon pequeno., monstruo: dragon_pequeno}
+  notas: Derrotar a un jefe da una tirada de experiencia.
+
+monstruos_extranos:
+  nombre: Monstruos Extranos
+  dado: d6
+  entradas:
+    - {rango: 1, texto: Minotauro., monstruo: minotauro}
+    - {rango: 2, texto: Plaga del Hierro., monstruo: plaga_del_hierro}
+    - {rango: 3, texto: Quimera., monstruo: quimera}
+    - {rango: 4, texto: Catoblepas., monstruo: catoblepas}
+    - {rango: 5, texto: Arana gigante., monstruo: arana_gigante}
+    - {rango: 6, texto: Gremlins invisibles., monstruo: gremlins_invisibles}
+  notas: >-
+    Equivalen a jefes: derrotarlos da tirada de experiencia (salvo los gremlins).

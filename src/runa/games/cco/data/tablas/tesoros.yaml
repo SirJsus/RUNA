@@ -1,0 +1,55 @@
+hechizos:
+  nombre: Hechizos Aleatorios
+  dado: d6
+  entradas:
+    - {rango: 1, texto: Bendicion., hechizo: bendicion}
+    - {rango: 2, texto: Bola de Fuego., hechizo: bola_de_fuego}
+    - {rango: 3, texto: Rayo., hechizo: rayo}
+    - {rango: 4, texto: Dormir., hechizo: dormir}
+    - {rango: 5, texto: Escapada., hechizo: escapada}
+    - {rango: 6, texto: Proteger., hechizo: proteger}
+
+tesoros_magicos:
+  nombre: Tesoros Magicos
+  dado: d6
+  entradas:
+    - rango: 1
+      texto: >-
+        Varita de Sueno: lanza Dormir 3 veces y se agota. Solo magos y elfos. El
+        usuario suma su nivel como si lanzara el hechizo.
+      objeto: varita_sueno
+    - rango: 2
+      texto: >-
+        Anillo de Teletransportacion: supera automaticamente una tirada de
+        Defensa sacando al personaje de la sala; vuelve al acabar el combate.
+        Despues queda como un anillo de oro de d6+1 piezas.
+      objeto: anillo_teletransportacion
+    - rango: 3
+      texto: >-
+        Oro de los Necios: soborna automaticamente al siguiente monstruo que
+        pida soborno, sea cual sea la cantidad. Un solo uso.
+      objeto: oro_de_los_necios
+    - rango: 4
+      texto: "Arma Magica: +1 al Ataque, permanente."
+      objeto: arma_magica
+      tirar: [tipo_arma_magica]
+    - rango: 5
+      texto: >-
+        Pocion de Curacion: restaura toda la Vida perdida a un personaje en
+        cualquier momento, sin gastar accion. Un solo uso. No la usan los barbaros.
+      objeto: pocion_curacion
+    - rango: 6
+      texto: >-
+        Baston de Bola de Fuego: lanza Bola de Fuego dos veces y se agota. Solo
+        magos. El usuario suma su nivel.
+      objeto: baston_bola_fuego
+
+tipo_arma_magica:
+  nombre: Tipo de Arma Magica
+  dado: d6
+  entradas:
+    - {rango: 1, texto: Arma de mano ligera aplastante., base: arma_mano_ligera, variante: aplastante}
+    - {rango: 2, texto: Arma de mano ligera cortante., base: arma_mano_ligera, variante: cortante}
+    - {rango: 3, texto: Arma de mano aplastante., base: arma_mano, variante: aplastante}
+    - {rango: 4-5, texto: Arma de mano cortante., base: arma_mano, variante: cortante}
+    - {rango: 6, texto: Arco., base: arco}

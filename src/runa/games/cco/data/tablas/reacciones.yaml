@@ -1,0 +1,180 @@
+# Tablas de Reacciones. Se tira una sola vez por grupo de esbirros.
+# `reaccion` es la clave que el bucle de combate interpreta.
+
+reacciones_ratas:
+  nombre: Reacciones (ratas y murcielagos)
+  dado: d6
+  entradas:
+    - {rango: 1-3, texto: Huyen., reaccion: huir}
+    - {rango: 4-6, texto: Pelean., reaccion: lucha}
+
+reacciones_goblins_grupo:
+  nombre: Reacciones (grupo de goblins)
+  dado: d6
+  entradas:
+    - {rango: 1, texto: Huyen., reaccion: huir}
+    - {rango: 2-3, texto: Huyen si los superan en numero., reaccion: huir_si_superados}
+    - {rango: 4, texto: Piden soborno., reaccion: soborno, oro_por_monstruo: 5}
+    - {rango: 5-6, texto: Pelean., reaccion: lucha}
+
+reacciones_ciempies:
+  nombre: Reacciones (ciempies gigantes)
+  dado: d6
+  entradas:
+    - {rango: 1, texto: Huyen., reaccion: huir}
+    - {rango: 2-3, texto: Huyen si los superan en numero., reaccion: huir_si_superados}
+    - {rango: 4-6, texto: Pelean., reaccion: lucha}
+
+reacciones_ranas:
+  nombre: Reacciones (ranas vampiro)
+  dado: d6
+  entradas:
+    - {rango: 1, texto: Huyen., reaccion: huir}
+    - {rango: 2-4, texto: Luchan., reaccion: lucha}
+    - {rango: 5-6, texto: Luchan hasta la muerte., reaccion: lucha_hasta_muerte}
+
+reacciones_ratas_esqueleticas:
+  nombre: Reacciones (ratas esqueleticas)
+  dado: d6
+  entradas:
+    - {rango: 1-2, texto: Huyen., reaccion: huir}
+    - {rango: 3-6, texto: Luchan., reaccion: lucha}
+
+reacciones_lucha_hasta_la_muerte:
+  nombre: Reacciones (siempre hasta la muerte)
+  dado: d6
+  entradas:
+    - {rango: 1-6, texto: Luchan hasta la muerte., reaccion: lucha_hasta_muerte}
+
+reacciones_siempre_lucha:
+  nombre: Reacciones (siempre lucha)
+  dado: d6
+  entradas:
+    - {rango: 1-6, texto: Siempre lucha., reaccion: lucha}
+
+reacciones_goblins:
+  nombre: Reacciones (goblins)
+  dado: d6
+  entradas:
+    - {rango: 1, texto: Huyen si los superan en numero., reaccion: huir_si_superados}
+    - {rango: 2-3, texto: Piden soborno., reaccion: soborno, oro_por_monstruo: 5}
+    - {rango: 4-6, texto: Luchan., reaccion: lucha}
+
+reacciones_hobgoblins:
+  nombre: Reacciones (hobgoblins)
+  dado: d6
+  entradas:
+    - {rango: 1, texto: Huyen si los superan en numero., reaccion: huir_si_superados}
+    - {rango: 2-3, texto: Piden soborno., reaccion: soborno, oro_por_monstruo: 10}
+    - {rango: 4-5, texto: Luchan., reaccion: lucha}
+    - {rango: 6, texto: Luchan hasta la muerte., reaccion: lucha_hasta_muerte}
+
+reacciones_orcos:
+  nombre: Reacciones (orcos)
+  dado: d6
+  entradas:
+    - {rango: 1-2, texto: Piden soborno., reaccion: soborno, oro_por_monstruo: 10}
+    - {rango: 3-5, texto: Luchan., reaccion: lucha}
+    - {rango: 6, texto: Luchan hasta la muerte., reaccion: lucha_hasta_muerte}
+
+reacciones_trolls:
+  nombre: Reacciones (trolls)
+  dado: d6
+  entradas:
+    - {rango: 1-2, texto: Luchan., reaccion: lucha}
+    - {rango: 3-6, texto: Luchan hasta la muerte., reaccion: lucha_hasta_muerte}
+  notas: Con un enano en el grupo, luchan automaticamente hasta la muerte.
+
+reacciones_funjis:
+  nombre: Reacciones (funjis)
+  dado: d6
+  entradas:
+    - {rango: 1-2, texto: Piden soborno., reaccion: soborno, oro_por_monstruo: d6}
+    - {rango: 3-6, texto: Luchan., reaccion: lucha}
+
+reacciones_orco_brutal:
+  nombre: Reacciones (orco brutal)
+  dado: d6
+  entradas:
+    - {rango: 1, texto: Pide soborno (50 oro)., reaccion: soborno, oro: 50}
+    - {rango: 2-5, texto: Lucha., reaccion: lucha}
+    - {rango: 6, texto: Lucha hasta la muerte., reaccion: lucha_hasta_muerte}
+
+reacciones_ogro:
+  nombre: Reacciones (ogro)
+  dado: d6
+  entradas:
+    - {rango: 1, texto: Pide soborno (30 oro)., reaccion: soborno, oro: 30}
+    - {rango: 2-3, texto: Lucha., reaccion: lucha}
+    - {rango: 4-6, texto: Lucha hasta la muerte., reaccion: lucha_hasta_muerte}
+
+reacciones_medusa:
+  nombre: Reacciones (medusa)
+  dado: d6
+  entradas:
+    - {rango: 1, texto: Pide soborno (6d6 oro)., reaccion: soborno, oro: 6d6}
+    - {rango: 2, texto: Encarga una mision., reaccion: mision, tirar: [misiones]}
+    - {rango: 3-5, texto: Lucha., reaccion: lucha}
+    - {rango: 6, texto: Lucha hasta la muerte., reaccion: lucha_hasta_muerte}
+
+reacciones_senor_del_caos:
+  nombre: Reacciones (Senor del Caos)
+  dado: d6
+  entradas:
+    - {rango: 1, texto: Huye si le superan en numero., reaccion: huir_si_superados}
+    - {rango: 2, texto: Lucha., reaccion: lucha}
+    - {rango: 3-6, texto: Lucha hasta la muerte., reaccion: lucha_hasta_muerte}
+
+reacciones_dragon:
+  nombre: Reacciones (dragon pequeno)
+  dado: d6
+  entradas:
+    - rango: 1
+      texto: Duerme. Todos los personajes atacan a +2 en su primer ataque.
+      reaccion: durmiendo
+    - rango: 2-3
+      texto: >-
+        Pide soborno: todo el oro del grupo, con un minimo de 100 piezas o un
+        objeto magico.
+      reaccion: soborno
+      oro_minimo: 100
+      acepta_objeto_magico: true
+    - {rango: 4-5, texto: Lucha., reaccion: lucha}
+    - {rango: 6, texto: Encarga una mision., reaccion: mision, tirar: [misiones]}
+
+reacciones_minotauro:
+  nombre: Reacciones (minotauro)
+  dado: d6
+  entradas:
+    - {rango: 1-2, texto: Pide soborno (60 oro)., reaccion: soborno, oro: 60}
+    # El libro salta del "3-4 lucha" al "6 lucha hasta la muerte" y deja el 5
+    # sin asignar. Se extiende "lucha" hasta el 5, que es lo que hacen el resto
+    # de tablas de la misma pagina.
+    - {rango: 3-5, texto: Lucha., reaccion: lucha, enmienda: hueco en el original}
+    - {rango: 6, texto: Lucha hasta la muerte., reaccion: lucha_hasta_muerte}
+
+reacciones_plaga_hierro:
+  nombre: Reacciones (Plaga del Hierro)
+  dado: d6
+  entradas:
+    - {rango: 1, texto: Huye., reaccion: huir}
+    - rango: 2-3
+      texto: Pide soborno (d6 oro para distraerla; no cuela el oro de los necios).
+      reaccion: soborno
+      oro: d6
+      rechaza_oro_falso: true
+    - {rango: 4-6, texto: Lucha., reaccion: lucha}
+
+reacciones_quimera:
+  nombre: Reacciones (quimera)
+  dado: d6
+  entradas:
+    - {rango: 1, texto: Pide soborno (50 oro)., reaccion: soborno, oro: 50}
+    - {rango: 2-6, texto: Lucha., reaccion: lucha}
+
+reacciones_catoblepas:
+  nombre: Reacciones (catoblepas)
+  dado: d6
+  entradas:
+    - {rango: 1, texto: Huye., reaccion: huir}
+    - {rango: 2-6, texto: Lucha., reaccion: lucha}

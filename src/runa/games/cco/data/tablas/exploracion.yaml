@@ -1,0 +1,120 @@
+busqueda_habitacion_vacia:
+  nombre: Busqueda de Habitacion Vacia
+  dado: d6
+  entradas:
+    - {rango: -20-1, texto: Los monstruos errantes atacan., tirar: [monstruo_errante]}
+    - {rango: 2-4, texto: La habitacion esta vacia.}
+    - {rango: 5-6, texto: Pista, puerta secreta o tesoro escondido., eleccion: jugador}
+  notas: >-
+    Solo se puede buscar una vez por habitacion. Al buscar en pasillos se tira a
+    -1 (de ahi que la tabla admita valores por debajo de 1). Un halfling puede
+    gastar un punto de Suerte para repetir.
+
+complicacion_tesoro_oculto:
+  nombre: Complicacion del Tesoro Oculto
+  dado: d6
+  entradas:
+    - rango: 1-2
+      texto: Se dispara una alarma y atrae monstruos errantes a la habitacion.
+      tirar: [monstruo_errante]
+    - rango: 3-5
+      texto: >-
+        El oro esta protegido por una trampa cuyo nivel es el numero sacado en
+        esta tabla. Un picaro puede desarmarla; si no hay picaro, ataca a un
+        aventurero al azar: 1 herida si no salva, 2 si saca un 1.
+      trampa_nivel_igual_a_la_tirada: true
+    - rango: 6
+      texto: >-
+        Un fantasma (nivel d3+1) protege el oro. Un clerigo puede disiparlo con
+        d6 + su nivel igualando o superando el nivel del fantasma. Si no hay
+        clerigo o falla, todos pierden 1 Vida y el fantasma desaparece.
+  notas: El botin es 3d6 x 3d6 piezas de oro, y se dobla tras una puerta secreta.
+
+misiones:
+  nombre: Busqueda o Mision
+  dado: d6
+  entradas:
+    - rango: 1
+      texto: >-
+        Traeme su cabeza. Mata a un jefe concreto y lleva su cabeza a esta sala.
+      objetivo: matar_jefe
+      tirar: [jefes]
+    - rango: 2
+      texto: >-
+        Traeme oro. Lleva d6x50 de tesoro a esta sala; si ya lo tienes encima, la
+        cantidad se duplica.
+      objetivo: entregar_oro
+      cantidad: d6x50
+    - rango: 3
+      texto: >-
+        Lo quiero vivo. Como el 1, pero hay que someter al jefe y atarlo con una
+        cuerda: con el hechizo Dormir o luchando a -1 a todos los ataques.
+      objetivo: capturar_jefe
+      tirar: [jefes]
+    - rango: 4
+      texto: >-
+        Traeme eso. Cada jefe muerto tiene 1 entre 6 de llevar el objeto, ademas
+        de su tesoro. Hay que traerlo a esta sala.
+      objetivo: recuperar_objeto
+      tirar: [tesoros_magicos]
+    - rango: 5
+      texto: >-
+        Deja que la paz sea tu camino. Resuelve al menos tres encuentros de forma
+        no violenta: sobornos, ayuda de monstruos, otra mision, o Dormir mas cuerda.
+      objetivo: tres_encuentros_pacificos
+    - rango: 6
+      texto: >-
+        Mata a todos los monstruos. Hay que trazar toda la mazmorra y matar a
+        todos sus ocupantes, salvo a quien encargo la mision.
+      objetivo: limpiar_mazmorra
+  notas: Al completar una mision se tira en la tabla de Recompensas Epicas.
+
+recompensas_epicas:
+  nombre: Recompensas Epicas
+  dado: d6
+  entradas:
+    - rango: 1
+      texto: >-
+        El Libro de Skalitos. Cuenta como un pergamino de cada uno de los seis
+        hechizos; se puede repartir en seis pergaminos o dejarlo entero. Se
+        destruye si su portador muere por el aliento de un dragon. Sin usar, se
+        vende por 650 piezas de oro.
+      id: libro_skalitos
+      unica: true
+    - rango: 2
+      texto: >-
+        El oro de Kerrak Dar. En cuanto una busqueda genere una pista, esa pista
+        localiza un cofre con 500 piezas de oro.
+      id: oro_kerrak_dar
+      unica: true
+    - rango: 3
+      texto: >-
+        Arma encantada. Un arma del grupo tira dos dados de Ataque y elige el
+        mejor, e hiere a monstruos que solo son vulnerables a la magia. Dura
+        hasta el final de la aventura.
+      id: arma_encantada
+      unica: true
+    - rango: 4
+      texto: >-
+        Escudo de Advertencia. Protege incluso al huir o al ser sorprendido por
+        monstruos errantes. Si el grupo no tiene escudos, se le da uno. Es
+        permanente durante toda la campana y se vende por 200 piezas de oro.
+      id: escudo_advertencia
+      unica: true
+    - rango: 5
+      texto: >-
+        Flecha Asesina. Inflige automaticamente 3 heridas al tipo de jefe que
+        determine la tirada. Solo la usa quien lleve arco. Se rompe al usarla.
+        Sin usar, se vende por 3d6x15 piezas de oro.
+      id: flecha_asesina
+      unica: true
+      tirar: [jefes]
+    - rango: 6
+      texto: >-
+        Simbolo Sagrado de Curacion. Solo lo usa un clerigo, que cura a +2 hasta
+        que muera. Sin usar, se vende por 700 piezas de oro.
+      id: simbolo_sagrado
+      unica: true
+  notas: >-
+    Cada recompensa epica ocurre una sola vez por campana; si vuelve a salir, se
+    repite la tirada.

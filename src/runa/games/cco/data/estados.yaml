@@ -1,0 +1,47 @@
+# Condiciones que puede arrastrar un personaje.
+# `dura`: combate (se cae al acabar) | aventura | permanente
+
+protegido:
+  texto: protegido por un hechizo
+  dura: combate
+  reglas:
+    - {en: defensa, suma: 1, texto: hechizo de Proteger}
+
+maldito:
+  texto: maldito por un altar siniestro
+  dura: aventura
+  reglas:
+    - {en: defensa, suma: -1, texto: maldicion del altar}
+  notas: >-
+    Se rompe matando a un jefe en solitario, entrando en un Templo Bendito o
+    recibiendo una Bendicion.
+
+petrificado:
+  texto: convertido en piedra
+  dura: aventura
+  etiquetas: [fuera_de_juego]
+  notas: Queda fuera del juego hasta que reciba un hechizo de Bendicion.
+
+bendecido:
+  texto: bendecido en un templo
+  dura: aventura
+  reglas:
+    - {en: ataque, suma: 1, si_alguno: [no_muerto, demonio], texto: bendicion del templo}
+  notas: La bonificacion desaparece en cuanto mate a un no muerto o demonio.
+
+mal_de_ojo:
+  texto: bajo el mal de ojo de un Senor del Caos
+  dura: aventura
+  reglas:
+    - {en: defensa, suma: -1, texto: mal de ojo}
+  notas: Dura hasta que el Senor del Caos muera.
+
+fuera_de_combate:
+  texto: desaparecio de la sala
+  dura: combate
+
+sobrecargado:
+  texto: lleva mas botin del que puede
+  dura: aventura
+  reglas:
+    - {en: defensa, suma: -1, texto: exceso de carga}

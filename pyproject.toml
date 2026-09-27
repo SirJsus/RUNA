@@ -1,0 +1,20 @@
+[project]
+name = "runa"
+version = "0.1.0"
+description = "Motor modular para juegos de rol en solitario, empezando por Cuatro contra la Oscuridad"
+requires-python = ">=3.11"
+dependencies = ["pyyaml>=6.0"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+runa = "runa.apps.cli.main:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

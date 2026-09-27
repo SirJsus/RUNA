@@ -1,0 +1,77 @@
+# Reglas globales del juego: como se resuelve cada tipo de tirada y los
+# modificadores que no pertenecen a una clase ni a un objeto concreto.
+
+tiradas:
+  ataque:
+    dado: d6
+    comparacion: ">="       # el nivel del monstruo es el numero que hay que sacar
+    explosiva: true
+  defensa:
+    dado: d6
+    comparacion: ">"        # hay que SUPERAR el nivel, no igualarlo
+    explosiva: true
+    exito_natural: 6        # un 6 natural siempre salva
+    fallo_natural: 1        # un 1 natural siempre falla
+  hechizo:
+    dado: d6
+    comparacion: ">="
+    explosiva: true
+  salvacion:
+    dado: d6
+    comparacion: ">="
+    explosiva: true
+  puzzle:
+    dado: d6
+    comparacion: ">="
+    explosiva: true
+  desarmar_trampa:
+    dado: d6
+    comparacion: ">="
+    explosiva: true
+  moral:
+    dado: d6
+    comparacion: ">="       # 4 o mas y el monstruo aguanta
+    explosiva: false        # los monstruos no tiran dados de personaje
+  resurreccion:
+    # "si el resultado es igual o INFERIOR al nivel del personaje, el ritual
+    # tiene exito": va al reves que todas las demas.
+    dado: d6
+    comparacion: "<="
+    explosiva: false
+  experiencia:
+    # "si el resultado es MAS ALTO que el nivel actual": hay que superarlo.
+    dado: d6
+    comparacion: ">"
+    explosiva: true
+
+# Que clase odia cada monstruo. Los ataques sobrantes van primero contra ella.
+# "Trolls, goblins y kobolds odian a los enanos; los orcos odian a los elfos; y
+# los no muertos odian a los clerigos."
+odios:
+  odia_enanos: enano
+  odia_elfos: elfo
+  odia_clerigos: clerigo
+  odia_halflings: halfling
+
+modificadores:
+  # "cada personaje suma 1/2 nivel" contra el aliento del dragon.
+  - en: salvacion
+    suma: medio_nivel
+    si: [aliento_de_dragon]
+    texto: medio nivel contra el aliento del dragon
+  - en: defensa
+    suma: 1
+    si: [retirada]
+    texto: retirada ordenada tras una puerta
+  - en: ataque
+    suma: 2
+    si: [monstruo_dormido]
+    texto: el monstruo esta durmiendo
+  - en: ataque
+    suma: 1
+    si: [aplastante, esqueleto]
+    texto: arma aplastante contra esqueletos
+  - en: ataque
+    suma: -1
+    si: [dos_manos, torpe_con_armas]
+    texto: arma a dos manos en manos poco habiles (cuenta como ligera)
