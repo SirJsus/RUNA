@@ -1,0 +1,341 @@
+# Bestiario (paginas 42 a 49). Las tablas de `tablas/monstruos.yaml` solo
+# apuntan aqui; el perfil de cada criatura vive en este archivo.
+#
+# tesoro: null / "normal" / "+1" / "-1" / {tiradas: N, modificador: M}
+# moral:  "normal" / "nunca" / -1
+
+# --------------------------------------------------------------------------- #
+# Bichos y alimanas. Derrotarlos NO da tirada de experiencia.
+# --------------------------------------------------------------------------- #
+
+ratas:
+  nombre: Ratas
+  tipo: bicho
+  nivel: 1
+  cantidad: 3d6
+  etiquetas: [alimana]
+  tesoro: null
+  reacciones: reacciones_ratas
+  xp: false
+  notas: >-
+    Cualquier personaje herido tiene 1 entre 6 de perder 1 Vida adicional por
+    herida infectada.
+
+murcielagos_vampiro:
+  nombre: Murcielagos vampiro
+  tipo: bicho
+  nivel: 1
+  cantidad: 3d6
+  etiquetas: [alimana]
+  tesoro: null
+  reacciones: reacciones_ratas
+  xp: false
+  reglas:
+    - {en: hechizo, suma: -1, texto: chillidos de los murcielagos}
+  notas: Sus chillidos distraen al lanzar hechizos.
+
+goblins_grupo:
+  nombre: Grupo de goblins
+  tipo: bicho
+  nivel: 3
+  cantidad: 2d6
+  etiquetas: [goblin, odia_enanos]
+  tesoro: "-1"
+  moral: -1
+  reacciones: reacciones_goblins_grupo
+  xp: false
+
+ciempies_gigantes:
+  nombre: Ciempies gigantes
+  tipo: bicho
+  nivel: 3
+  cantidad: d6
+  etiquetas: [alimana]
+  tesoro: null
+  reacciones: reacciones_ciempies
+  xp: false
+  notas: Todo personaje herido salva contra veneno de nivel 2 o pierde 1 Vida mas.
+
+ranas_vampiro:
+  nombre: Ranas vampiro
+  tipo: bicho
+  nivel: 4
+  cantidad: d6
+  etiquetas: [alimana]
+  tesoro: "-1"
+  reacciones: reacciones_ranas
+  xp: false
+
+ratas_esqueleticas:
+  nombre: Ratas esqueleticas
+  tipo: bicho
+  nivel: 3
+  cantidad: 2d6
+  etiquetas: [no_muerto, esqueleto, alimana]
+  tesoro: null
+  reacciones: reacciones_ratas_esqueleticas
+  xp: false
+  reglas:
+    - prohibe: ataque
+      si_alguno: [arco, honda]
+      texto: no se puede atacar a las ratas esqueleticas con arcos ni hondas
+  notas: >-
+    Las armas aplastantes suman +1 (regla general), pero no se las puede atacar
+    con arcos ni hondas.
+
+# --------------------------------------------------------------------------- #
+# Secuaces y esbirros
+# --------------------------------------------------------------------------- #
+
+esqueletos:
+  nombre: Esqueletos
+  tipo: esbirro
+  nivel: 3
+  cantidad: d6+2
+  etiquetas: [no_muerto, esqueleto, odia_clerigos]
+  tesoro: null
+  moral: nunca
+  reacciones: reacciones_lucha_hasta_la_muerte
+  reglas:
+    - {en: ataque, suma: -1, si: [flecha], texto: flechas contra esqueletos}
+    - {prohibe: hechizo, si: [dormir], texto: Dormir no afecta a los muertos vivientes}
+
+zombies:
+  nombre: Zombies
+  tipo: esbirro
+  nivel: 3
+  cantidad: d6
+  etiquetas: [no_muerto, odia_clerigos]
+  tesoro: null
+  moral: nunca
+  reacciones: reacciones_lucha_hasta_la_muerte
+  reglas:
+    - {en: ataque, suma: -1, si: [flecha], texto: flechas contra zombies}
+    - {prohibe: hechizo, si: [dormir], texto: Dormir no afecta a los muertos vivientes}
+
+goblins:
+  nombre: Goblins
+  tipo: esbirro
+  nivel: 3
+  cantidad: d6+3
+  etiquetas: [goblin, odia_enanos]
+  tesoro: "-1"
+  reacciones: reacciones_goblins
+  notas: 1 entre 6 de sorprender al grupo y actuar antes que el.
+
+hobgoblins:
+  nombre: Hobgoblins
+  tipo: esbirro
+  nivel: 4
+  cantidad: d6
+  etiquetas: [goblin]
+  tesoro: "+1"
+  reacciones: reacciones_hobgoblins
+
+orcos:
+  nombre: Orcos
+  tipo: esbirro
+  nivel: 4
+  cantidad: d6+1
+  etiquetas: [orco, odia_elfos]
+  tesoro: normal
+  sin_objetos_magicos: d6xd6
+  reacciones: reacciones_orcos
+  notas: >-
+    Temen la magia: prueban moral cada vez que uno o mas mueren por un hechizo, y
+    a -1 si un hechizo los baja del 50%. Nunca llevan objetos magicos: se
+    sustituyen por d6xd6 piezas de oro.
+
+trolls:
+  nombre: Trolls
+  tipo: esbirro
+  nivel: 5
+  cantidad: d3
+  etiquetas: [troll, gigante, odia_enanos]
+  tesoro: normal
+  reacciones: reacciones_trolls
+  notas: >-
+    Se regeneran: por cada troll muerto, tira d6 en su siguiente turno y con 5-6
+    vuelve a levantarse. Se evita matandolo con un hechizo o gastando un ataque
+    en descuartizarlo con un arma con filo. Con un enano en el grupo, luchan
+    automaticamente hasta la muerte.
+
+funjis:
+  nombre: Funjis
+  tipo: esbirro
+  nivel: 3
+  cantidad: 2d6
+  etiquetas: [planta]
+  tesoro: normal
+  reacciones: reacciones_funjis
+  notas: >-
+    Quien reciba dano salva contra veneno de nivel 3 o pierde 1 Vida. Los
+    halflings suman su nivel a esa tirada.
+
+# --------------------------------------------------------------------------- #
+# Jefes
+# --------------------------------------------------------------------------- #
+
+momia:
+  nombre: Momia
+  tipo: jefe
+  nivel: 5
+  vida: 4
+  ataques: 2
+  etiquetas: [no_muerto, odia_clerigos]
+  tesoro: "+2"
+  moral: nunca
+  reacciones: reacciones_siempre_lucha
+  reglas:
+    - {en: hechizo, suma: 2, si: [bola_de_fuego], texto: bola de fuego contra momias}
+    - {prohibe: hechizo, si: [dormir], texto: Dormir no afecta a los muertos vivientes}
+  notas: Todo personaje al que mate se convierte en otra momia y hay que combatirla.
+
+orco_brutal:
+  nombre: Orco brutal
+  tipo: jefe
+  nivel: 5
+  vida: 5
+  ataques: 2
+  etiquetas: [orco, odia_elfos]
+  tesoro: "+1"
+  sin_objetos_magicos: 2d6xd6
+  reacciones: reacciones_orco_brutal
+  notas: No puede llevar objetos magicos; se sustituyen por 2d6xd6 piezas de oro.
+
+ogro:
+  nombre: Ogro
+  tipo: jefe
+  nivel: 5
+  vida: 6
+  dano: 2
+  etiquetas: [ogro, gigante]
+  tesoro: normal
+  reacciones: reacciones_ogro
+  notas: Cada golpe suyo inflige 2 puntos de dano.
+
+medusa:
+  nombre: Medusa
+  tipo: jefe
+  nivel: 4
+  vida: 4
+  tesoro: "+1"
+  reacciones: reacciones_medusa
+  notas: >-
+    Al empezar la batalla todos salvan contra una mirada de nivel 4 o quedan
+    petrificados hasta recibir una Bendicion. Los picaros suman medio nivel.
+
+senor_del_caos:
+  nombre: Senor del Caos
+  tipo: jefe
+  nivel: 6
+  vida: 4
+  ataques: 3
+  etiquetas: [demonio, caos]
+  tesoro: {tiradas: 2, modificador: 1}
+  reacciones: reacciones_senor_del_caos
+  notas: >-
+    Antes del combate, d6 para sus poderes: 1-3 ninguno, 4 mal de ojo (salvar 4+
+    o -1 a toda Defensa hasta que muera), 5 drenaje de energia (herido: salvar 4+
+    o perder 1 nivel), 6 explosion de fuego infernal (todos salvan 6+ o pierden 2
+    Vida; los clerigos suman medio nivel). Al matarlo, con 5-6 un personaje a tu
+    eleccion encuentra una Pista.
+
+dragon_pequeno:
+  nombre: Dragon pequeno
+  tipo: jefe
+  nivel: 6
+  vida: 5
+  ataques: 2
+  etiquetas: [dragon]
+  tesoro: {tiradas: 3, modificador: 1}
+  reacciones: reacciones_dragon
+  errante: false
+  reglas:
+    - {prohibe: hechizo, si: [bola_de_fuego], texto: la bola de fuego no afecta a los dragones}
+    - {prohibe: hechizo, si: [dormir], texto: Dormir no afecta a los dragones}
+  notas: >-
+    En cada turno suyo, d6: con 1-2 exhala fuego e inflige 1 dano a quien no
+    salve contra nivel 6 (cada personaje suma medio nivel); si no, muerde a 2
+    personajes al azar. Nunca aparece como monstruo errante.
+
+# --------------------------------------------------------------------------- #
+# Monstruos extranos. Equivalen a jefes y dan tirada de experiencia.
+# --------------------------------------------------------------------------- #
+
+minotauro:
+  nombre: Minotauro
+  tipo: extrano
+  nivel: 5
+  vida: 4
+  ataques: 2
+  etiquetas: [gigante, odia_halflings]
+  tesoro: normal
+  reacciones: reacciones_minotauro
+  reglas:
+    - {en: defensa, suma: -1, si: [primer_turno], texto: carga del minotauro}
+
+plaga_del_hierro:
+  nombre: Plaga del Hierro
+  tipo: extrano
+  nivel: 3
+  vida: 4
+  ataques: 3
+  etiquetas: [ignora_armadura_pesada]
+  tesoro: null
+  reacciones: reacciones_plaga_hierro
+  notas: >-
+    Si golpea, la victima no pierde Vida pero si su armadura, escudo, arma
+    principal o 3d6 de oro, en ese orden. La armadura pesada no da bonificacion
+    contra ella; el escudo y la armadura ligera si.
+
+quimera:
+  nombre: Quimera
+  tipo: extrano
+  nivel: 5
+  vida: 6
+  ataques: 3
+  etiquetas: [bestia]
+  tesoro: normal
+  reacciones: reacciones_quimera
+  notas: >-
+    En cada turno suyo, d6: con 1-2 exhala fuego en vez de atacar y todos salvan
+    contra fuego de nivel 4 o pierden 1 Vida.
+
+catoblepas:
+  nombre: Catoblepas
+  tipo: extrano
+  nivel: 4
+  vida: 4
+  etiquetas: [bestia]
+  tesoro: "+1"
+  reacciones: reacciones_catoblepas
+  notas: Al empezar la batalla todos defienden contra una mirada de nivel 4 o pierden 1 Vida.
+
+arana_gigante:
+  nombre: Arana gigante
+  tipo: extrano
+  nivel: 5
+  vida: 3
+  ataques: 2
+  etiquetas: [alimana]
+  tesoro: {tiradas: 2, modificador: 0}
+  reacciones: reacciones_siempre_lucha
+  notas: >-
+    Los heridos salvan contra veneno de nivel 3 o pierden 1 Vida mas. Por su
+    telarana, el grupo no puede retirarse salvo quemandola con Bola de Fuego.
+
+gremlins_invisibles:
+  nombre: Gremlins invisibles
+  tipo: extrano
+  nivel: 0
+  vida: 0
+  tesoro: null
+  combate: false
+  xp: false
+  reacciones: ""
+  notas: >-
+    Roban d6+3 objetos del grupo en este orden: objetos magicos, pergaminos,
+    pociones, armas, gemas y monedas (en paquetes de 10). Si lo roban todo,
+    dejan una nota de agradecimiento que cuenta como Pista. No se les puede
+    combatir ni dan experiencia.

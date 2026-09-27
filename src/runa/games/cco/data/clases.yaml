@@ -1,0 +1,168 @@
+# Las ocho clases (paginas 10 a 17). `vida` y `recursos` son expresiones con
+# N = nivel del personaje.
+
+guerrero:
+  nombre: Guerrero
+  vida: 6+N
+  riqueza_inicial: 2d6
+  nivel_maximo: 5
+  reglas:
+    - {en: ataque, suma: nivel, texto: nivel de guerrero}
+  permite:
+    armaduras: [ligera, pesada]
+    escudo: true
+    armas: [ligera, mano, dos_manos, arco, honda]
+  equipo_inicial: [armadura_ligera, escudo, arma_mano]
+  notas: Puede cambiar escudo y arma de mano por un arma a dos manos o un arco.
+
+clerigo:
+  nombre: Clerigo
+  vida: 4+N
+  riqueza_inicial: d6
+  nivel_maximo: 5
+  reglas:
+    # Medio nivel en general, nivel completo contra no muertos.
+    - {en: ataque, suma: medio_nivel, si_no: [no_muerto], texto: medio nivel de clerigo}
+    - {en: ataque, suma: nivel, si: [no_muerto], texto: nivel de clerigo contra no muertos}
+  permite:
+    armaduras: [ligera, pesada]
+    escudo: true
+    armas: [mano, dos_manos, honda]
+  equipo_inicial: [armadura_ligera, escudo, arma_mano]
+  recursos: {bendicion: 3, curacion: 3}
+  notas: >-
+    Curacion sana d6 + nivel, en cualquier momento, pero no puede atacar el
+    mismo turno. Prefiere armas aplastantes por los esqueletos.
+
+picaro:
+  nombre: Picaro
+  vida: 3+N
+  riqueza_inicial: 3d6
+  nivel_maximo: 5
+  etiquetas: [torpe_con_armas]
+  reglas:
+    - {en: defensa, suma: nivel, texto: nivel de picaro}
+    - {en: desarmar_trampa, suma: nivel, texto: nivel de picaro}
+    - prohibe: desarmar_trampa
+      si: [dos_manos]
+      texto: no se pueden desarmar trampas con las dos manos ocupadas
+    # Solo apunala por la espalda si el grupo supera en numero a los esbirros.
+    - en: ataque
+      suma: nivel
+      si: [esbirro, superados_en_numero]
+      texto: picaro atacando a esbirros superados en numero
+  permite:
+    armaduras: [ligera]
+    escudo: false
+    armas: [ligera, mano, arco, honda]
+  equipo_inicial: [armadura_ligera, arma_mano_ligera, cuerda, ganzuas]
+  notas: >-
+    Puede empunar un arma a dos manos, pero le cuenta como ligera y le impide
+    desarmar trampas mientras la lleve.
+
+mago:
+  nombre: Mago
+  vida: 2+N
+  riqueza_inicial: 4d6
+  nivel_maximo: 5
+  etiquetas: [torpe_con_armas, lanzador]
+  reglas:
+    - {en: ataque, suma: nivel, si: [hechizo], texto: nivel de mago al lanzar hechizos}
+    - {en: hechizo, suma: nivel, texto: nivel de mago}
+    - {en: puzzle, suma: nivel, texto: nivel de mago}
+    - prohibe: [hechizo, ataque_magico]
+      si: [dos_manos]
+      texto: no se puede lanzar con las dos manos ocupadas
+  permite:
+    armaduras: []
+    escudo: false
+    armas: [ligera, honda]
+  equipo_inicial: [arma_mano_ligera, libro_hechizos]
+  recursos: {hechizos: 2+N}
+  notas: >-
+    Prepara los hechizos antes de la aventura, con repeticiones si quiere. Con
+    un arma a dos manos en las manos no puede lanzar.
+
+barbaro:
+  nombre: Barbaro
+  vida: 7+N
+  riqueza_inicial: d6
+  nivel_maximo: 5
+  reglas:
+    - {en: ataque, suma: nivel, texto: nivel de barbaro}
+  permite:
+    armaduras: [ligera]
+    escudo: true
+    armas: [ligera, mano, dos_manos, arco, honda]
+    objetos_magicos: false
+  equipo_inicial: [armadura_ligera, escudo, arma_mano]
+  recursos: {ira: 1}
+  notas: >-
+    Ataque de Ira una vez por juego: tira tres veces y elige la mejor; contra un
+    jefe inflige dos heridas. Acepta la curacion del clerigo y el agua bendita,
+    pero no pociones, pergaminos ni objetos magicos.
+
+elfo:
+  nombre: Elfo
+  vida: 4+N
+  riqueza_inicial: 2d6
+  nivel_maximo: 3
+  etiquetas: [lanzador]
+  reglas:
+    - {en: ataque, suma: nivel, texto: nivel de elfo}
+    - {en: hechizo, suma: nivel, texto: nivel de elfo}
+    - {en: [ataque, hechizo], suma: 1, si: [orco], texto: elfo contra orcos}
+    # Solo lanza con armadura ligera y sin escudo embrazado.
+    - prohibe: [hechizo, ataque_magico]
+      si_alguno: [escudo, pesada]
+      texto: un elfo solo lanza hechizos con armadura ligera y sin escudo
+  permite:
+    armaduras: [ligera, pesada]
+    escudo: true
+    armas: [ligera, mano, dos_manos, arco, honda]
+  equipo_inicial: [armadura_ligera, arma_mano, arco]
+  recursos: {hechizos: N}
+  notas: >-
+    Solo lanza hechizos con armadura ligera y sin escudo. Puede llevar el escudo
+    a la espalda y perder un ataque para embrazarlo.
+
+enano:
+  nombre: Enano
+  vida: 5+N
+  riqueza_inicial: 3d6
+  nivel_maximo: 4
+  reglas:
+    - {en: ataque, suma: nivel, si_no: [a_distancia], texto: nivel de enano}
+    - {en: defensa, suma: 1, si_alguno: [troll, ogro, gigante], texto: enano contra gigantes}
+    - {en: ataque, suma: 1, si: [goblin], texto: enano contra goblins}
+  permite:
+    armaduras: [ligera, pesada]
+    escudo: true
+    armas: [ligera, mano, dos_manos, arco, honda]
+  equipo_inicial: [armadura_ligera, escudo, arma_mano]
+  notas: >-
+    Huele el oro: al encontrar un monstruo, d6 + nivel; con 6+ conoce su tesoro
+    antes de decidir si ataca. Dos o mas enanos impiden sobornar. Vende gemas y
+    joyas un 20% mas caras. Siempre le toca al menos una moneda del reparto.
+
+halfling:
+  nombre: Halfling
+  vida: 3+N
+  riqueza_inicial: 2d6
+  nivel_maximo: 3
+  reglas:
+    - en: defensa
+      suma: nivel
+      si_alguno: [gigante, troll, ogro]
+      texto: halfling contra gigantes
+    - {en: salvacion, suma: nivel, si: [veneno_hongo], texto: halfling contra el veneno de los hongos}
+  permite:
+    armaduras: [ligera]
+    escudo: false
+    armas: [ligera, honda]
+  equipo_inicial: [armadura_ligera, arma_mano_ligera, provisiones]
+  recursos: {suerte: N+1}
+  notas: >-
+    Gasta un punto de Suerte para repetir un Ataque o una Defensa fallidos, o
+    para escapar de un combate sin recibir ataque. La repeticion es definitiva
+    aunque salga peor.

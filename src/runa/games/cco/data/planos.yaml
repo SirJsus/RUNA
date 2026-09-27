@@ -1,0 +1,390 @@
+# Las losetas de la mazmorra (paginas 32 y 33-37 del reglamento).
+#
+# IMPORTANTE: en el libro son dibujos a mano sobre papel cuadriculado, con
+# formas irregulares y dos que son circulos. Esto es una transcripcion A OJO:
+# las proporciones y el numero de salidas son fieles, pero la silueta exacta de
+# las mas retorcidas es una aproximacion. Corregir una loseta es editar su
+# bloque `forma`; el dibujo se adapta solo.
+#
+#   forma    `#` es suelo transitable y `.` es roca. La fila de arriba es
+#            y=0 y la columna de la izquierda x=0.
+#   salidas  "x,y,lado" con una puerta. Lado: N (arriba), S, E (derecha), O.
+#   aberturas  igual, pero paso franco sin puerta (los corredores del libro
+#            que se salen del dibujo).
+
+entradas:
+
+  "1":
+    tipo: habitacion
+    forma: |
+      ####
+      ####
+    salidas: ["0,0,N", "2,0,N", "1,1,S"]
+
+  "2":
+    tipo: habitacion
+    forma: |
+      ###
+      ###
+    salidas: ["0,0,N", "2,1,E", "1,1,S"]
+    aberturas: ["1,0,N"]
+
+  "3":
+    tipo: corredor
+    forma: |
+      #.#
+      ###
+    aberturas: ["0,0,N", "2,0,N"]
+
+  "4":
+    tipo: habitacion
+    forma: |
+      ###
+      ###
+    aberturas: ["1,0,N", "0,1,O", "2,1,E"]
+
+  "5":
+    tipo: corredor
+    forma: |
+      #
+      #
+      #
+    aberturas: ["0,0,N"]
+
+  "6":
+    tipo: habitacion
+    forma: |
+      ###
+      ###
+    salidas: ["1,1,S"]
+    aberturas: ["0,0,N"]
+
+habitaciones:
+
+  # --- 11 a 16 ----------------------------------------------------------- #
+
+  "11":
+    tipo: corredor
+    forma: |
+      #
+      #
+      #
+      #
+    salidas: ["0,0,E", "0,2,O"]
+    aberturas: ["0,3,S"]
+
+  "12":
+    tipo: corredor
+    forma: |
+      #
+      #
+      #
+    salidas: ["0,0,N", "0,2,S"]
+
+  "13":
+    tipo: corredor
+    notas: Corredor en zigzag, como una S tumbada.
+    forma: |
+      ####
+      ...#
+      .###
+      .#
+    salidas: ["0,0,N", "2,0,N"]
+
+  "14":
+    tipo: habitacion
+    notas: Forma de I mayuscula.
+    forma: |
+      ###
+      .#
+      ###
+    salidas: ["2,0,E", "0,2,S"]
+
+  "15":
+    tipo: habitacion
+    forma: |
+      ##
+      ###
+      .##
+    salidas: ["0,0,N", "0,1,O", "2,2,S"]
+
+  "16":
+    tipo: habitacion
+    notas: Sala con dos corredores paralelos descendiendo.
+    forma: |
+      ###
+      #.#
+      #.#
+    salidas: ["1,0,N"]
+    aberturas: ["0,2,S", "2,2,S"]
+
+  # --- 21 a 26 ----------------------------------------------------------- #
+
+  "21":
+    tipo: habitacion
+    forma: |
+      ##
+      ##
+    salidas: ["1,1,S"]
+
+  "22":
+    tipo: habitacion
+    forma: |
+      ##
+      ##
+      #
+    salidas: ["1,0,N", "0,1,O"]
+    aberturas: ["0,2,S"]
+
+  "23":
+    tipo: habitacion
+    notas: Sala con un corredor largo hacia el oeste.
+    forma: |
+      #####
+      ...##
+    salidas: ["0,0,O", "4,0,E"]
+
+  "24":
+    tipo: habitacion
+    notas: Planta en cruz.
+    forma: |
+      .#
+      ###
+      .#
+    salidas: ["1,0,N", "0,1,O", "1,2,S"]
+
+  "25":
+    tipo: habitacion
+    notas: Camara redonda con un corredor al oeste. En el libro es un circulo.
+    forma: |
+      ####
+      ..##
+    aberturas: ["0,0,O"]
+    salidas: ["3,0,E"]
+
+  "26":
+    tipo: habitacion
+    forma: |
+      ##
+      ##
+      ##
+    salidas: ["0,0,O", "1,1,E"]
+
+  # --- 31 a 36 ----------------------------------------------------------- #
+
+  "31":
+    tipo: habitacion
+    forma: |
+      .##
+      .##
+      ##
+    salidas: ["2,0,N", "0,2,S"]
+
+  "32":
+    tipo: habitacion
+    notas: Planta en forma de E invertida.
+    forma: |
+      .###
+      .##
+      ####
+    salidas: ["3,0,E", "0,2,S", "3,2,S"]
+
+  "33":
+    tipo: corredor
+    forma: |
+      #
+      #
+      #
+    salidas: ["0,0,N", "0,1,O"]
+
+  "34":
+    tipo: habitacion
+    notas: Camara redonda. En el libro es un circulo.
+    forma: |
+      .#
+      ###
+      .#
+    salidas: ["1,0,N", "1,2,S"]
+
+  "35":
+    tipo: habitacion
+    notas: Sala con un corredor al noroeste.
+    forma: |
+      ##
+      .###
+      .###
+    aberturas: ["0,0,O"]
+
+  "36":
+    tipo: habitacion
+    forma: |
+      ##
+      ###
+      ##
+      ##
+    salidas: ["2,1,E", "0,1,O", "0,3,O"]
+
+  # --- 41 a 46 ----------------------------------------------------------- #
+
+  "41":
+    tipo: habitacion
+    forma: |
+      ###
+      ###
+      ###
+    salidas: ["0,0,N", "1,2,S"]
+
+  "42":
+    tipo: corredor
+    notas: Corredor en Z.
+    forma: |
+      #
+      ##
+      .#
+    aberturas: ["0,0,N", "1,2,S"]
+
+  "43":
+    tipo: habitacion
+    forma: |
+      ##
+      ##
+    salidas: ["1,0,N"]
+    aberturas: ["1,1,S"]
+
+  "44":
+    tipo: habitacion
+    forma: |
+      ###
+      ###
+      .#
+    salidas: ["2,0,E", "1,2,S"]
+
+  "45":
+    tipo: corredor
+    notas: Cruce de cuatro corredores.
+    forma: |
+      .#
+      ###
+      .#
+    aberturas: ["1,0,N", "0,1,O", "2,1,E", "1,2,S"]
+
+  "46":
+    tipo: habitacion
+    notas: Sala grande con un corredor al sur.
+    forma: |
+      ###
+      ###
+      .#
+    salidas: ["1,0,N", "1,2,S"]
+
+  # --- 51 a 56 ----------------------------------------------------------- #
+
+  "51":
+    tipo: habitacion
+    notas: Planta en U.
+    forma: |
+      #.#
+      ###
+      .#
+    salidas: ["0,0,N", "2,0,N", "1,2,S"]
+
+  "52":
+    tipo: habitacion
+    forma: |
+      .##
+      ###
+      .##
+    salidas: ["0,1,O"]
+
+  "53":
+    tipo: corredor
+    notas: Corredor en T.
+    forma: |
+      ###
+      .#
+    salidas: ["0,0,O"]
+    aberturas: ["2,0,E", "1,1,S"]
+
+  "54":
+    tipo: habitacion
+    notas: Sala con un corredor al este.
+    forma: |
+      ##
+      ###
+    salidas: ["0,1,S"]
+    aberturas: ["2,1,E"]
+
+  "55":
+    tipo: corredor
+    notas: Corredor en L.
+    forma: |
+      ##
+      ###
+    salidas: ["1,0,E"]
+    aberturas: ["2,1,E"]
+
+  "56":
+    tipo: habitacion
+    forma: |
+      .##
+      ###
+      ###
+    salidas: ["2,0,N", "0,1,O", "1,2,S"]
+
+  # --- 61 a 66 ----------------------------------------------------------- #
+
+  "61":
+    tipo: habitacion
+    forma: |
+      ##
+      ##
+      ##
+    salidas: ["0,0,N", "1,1,E", "1,2,S"]
+
+  "62":
+    tipo: corredor
+    notas: Cruce abierto de cuatro corredores.
+    forma: |
+      .#
+      ###
+      .#
+    aberturas: ["1,0,N", "0,1,O", "2,1,E", "1,2,S"]
+
+  "63":
+    tipo: corredor
+    forma: |
+      #
+      #
+      #
+      #
+    salidas: ["0,1,O", "0,1,E"]
+    aberturas: ["0,0,N", "0,3,S"]
+
+  "64":
+    tipo: habitacion
+    notas: Sala con dos corredores paralelos descendiendo.
+    forma: |
+      ###
+      #.#
+      #.#
+    salidas: ["1,0,N"]
+    aberturas: ["0,2,S", "2,2,S"]
+
+  "65":
+    tipo: habitacion
+    notas: Planta escalonada en Z.
+    forma: |
+      ##
+      ###
+      .##
+    salidas: ["0,0,N", "2,2,S"]
+
+  "66":
+    tipo: habitacion
+    notas: Sala grande con un corredor al oeste.
+    forma: |
+      .###
+      ####
+      .###
+    salidas: ["3,0,N", "3,2,S"]
+    aberturas: ["0,1,O"]
